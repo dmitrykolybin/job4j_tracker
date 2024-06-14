@@ -38,6 +38,6 @@ class StartUITest {
         String[] answers = {String.valueOf(item.getId())};
         StartUI.deleteItem(new MockInput(answers), tracker);
         Item deleted = tracker.findById(item.getId());
-        assertThat(deleted).isEqualTo(null);
+        assertThat(deleted).isNull();
     }
 }
