@@ -34,8 +34,8 @@ public class AnalyzeByMap {
         Map<String, Double> totalSubjects = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                Double score = totalSubjects.getOrDefault(subject.name(), 0.0) + subject.score();
-                totalSubjects.put(subject.name(), score);
+                totalSubjects.put(subject.name(),
+                        totalSubjects.getOrDefault(subject.name(), 0.0) + subject.score());
             }
         }
         for (String subject : totalSubjects.keySet()) {
@@ -45,31 +45,37 @@ public class AnalyzeByMap {
     }
 
     public static Label bestStudent(List<Pupil> pupils) {
-        List<Label> result = new ArrayList<>();
+        Label bestStudent = null;
+        double maxResult = 0;
         for (Pupil pupil : pupils) {
             double totalResult = 0;
             for (Subject subject : pupil.subjects()) {
                 totalResult += subject.score();
             }
-            result.add(new Label(pupil.name(), totalResult));
+            if (totalResult > maxResult) {
+                maxResult = totalResult;
+                bestStudent = new Label(pupil.name(), totalResult);
+            }
         }
-        result.sort(Comparator.naturalOrder());
-        return result.get(result.size() - 1);
+        return bestStudent;
     }
 
     public static Label bestSubject(List<Pupil> pupils) {
-        List<Label> result = new ArrayList<>();
         Map<String, Double> totalSubjects = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                Double score = totalSubjects.getOrDefault(subject.name(), 0.0) + subject.score();
-                totalSubjects.put(subject.name(), score);
+                totalSubjects.put(subject.name(),
+                        totalSubjects.getOrDefault(subject.name(), 0.0) + subject.score());
             }
         }
-        for (String subject : totalSubjects.keySet()) {
-            result.add(new Label(subject, totalSubjects.get(subject)));
+        String bestSubjectName = "";
+        double maxScore = 0;
+        for (String subjectName : totalSubjects.keySet()) {
+            if (totalSubjects.get(subjectName) > maxScore) {
+                bestSubjectName = subjectName;
+                maxScore = totalSubjects.get(subjectName);
+            }
         }
-        result.sort(Comparator.naturalOrder());
-        return result.get(result.size() - 1);
+        return new Label(bestSubjectName, maxScore);
     }
 }
