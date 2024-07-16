@@ -70,10 +70,10 @@ public class AnalyzeByMap {
         }
         String bestSubjectName = "";
         double maxScore = 0;
-        for (String subjectName : totalSubjects.keySet()) {
-            if (totalSubjects.get(subjectName) > maxScore) {
-                bestSubjectName = subjectName;
-                maxScore = totalSubjects.get(subjectName);
+        for (Map.Entry<String, Double> subject : totalSubjects.entrySet()) {
+            if (subject.getValue() > maxScore) {
+                bestSubjectName = subject.getKey();
+                maxScore = subject.getValue();
             }
         }
         return new Label(bestSubjectName, maxScore);
