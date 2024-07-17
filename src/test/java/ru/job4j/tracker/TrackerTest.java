@@ -100,40 +100,50 @@ public class TrackerTest {
 
     @Test
     public void whenAscByName() {
+        Item itemA =  new Item("Name A");
+        Item itemB =  new Item("Name B");
+        Item itemC =  new Item("Name C");
+        Item itemD =  new Item("Name D");
+        Item itemE =  new Item("Name E");
         List<Item> items = Arrays.asList(
-                new Item("Name C"),
-                new Item("Name E"),
-                new Item("Name B"),
-                new Item("Name A"),
-                new Item("Name D")
+                itemC,
+                itemE,
+                itemB,
+                itemA,
+                itemD
         );
         Collections.sort(items, new ItemAscByName());
         List<Item> expected = Arrays.asList(
-                new Item("Name A"),
-                new Item("Name B"),
-                new Item("Name C"),
-                new Item("Name D"),
-                new Item("Name E")
+                itemA,
+                itemB,
+                itemC,
+                itemD,
+                itemE
         );
         assertThat(items).isEqualTo(expected);
     }
 
     @Test
     public void whenDescByName() {
+        Item itemA =  new Item("Name A");
+        Item itemB =  new Item("Name B");
+        Item itemC =  new Item("Name C");
+        Item itemD =  new Item("Name D");
+        Item itemE =  new Item("Name E");
         List<Item> items = Arrays.asList(
-                new Item("Name C"),
-                new Item("Name E"),
-                new Item("Name B"),
-                new Item("Name A"),
-                new Item("Name D")
+                itemC,
+                itemE,
+                itemB,
+                itemA,
+                itemD
         );
         Collections.sort(items, new ItemDescByName());
         List<Item> expected = Arrays.asList(
-                new Item("Name E"),
-                new Item("Name D"),
-                new Item("Name C"),
-                new Item("Name B"),
-                new Item("Name A")
+                itemE,
+                itemD,
+                itemC,
+                itemB,
+                itemA
         );
         assertThat(items).isEqualTo(expected);
     }
