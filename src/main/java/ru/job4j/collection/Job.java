@@ -13,7 +13,7 @@ public class Job implements Comparable<Job> {
         return name;
     }
 
-    public int getPriority() {
+    public Integer getPriority() {
         return priority;
     }
 
