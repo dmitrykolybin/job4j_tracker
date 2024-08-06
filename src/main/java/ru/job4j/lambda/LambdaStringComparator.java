@@ -7,9 +7,10 @@ import java.util.List;
 public class LambdaStringComparator {
     public static void main(String[] args) {
         Comparator<String> comparatorText = (left, right) -> left.compareTo(right);
-        Comparator<String> comparatorDescSize = (left, right) -> right.compareTo(left);
+        Comparator<String> comparatorDescSize = (left, right) ->
+                Integer.compare(right.length(), left.length());
         List<String> text = Arrays.asList(
-                "test2", "test1", "test3"
+                "test222", "test1", "test33"
         );
         text.sort(comparatorText);
         System.out.println(text);
