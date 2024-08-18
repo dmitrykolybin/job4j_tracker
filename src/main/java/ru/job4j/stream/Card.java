@@ -6,6 +6,14 @@ public class Card {
     private Suit suit;
     private Value value;
 
+    @Override
+    public String toString() {
+        return "Card{"
+                + "suit=" + suit
+                + ", value=" + value
+                + '}';
+    }
+
     public Card(Suit suit, Value value) {
         this.suit = suit;
         this.value = value;
@@ -15,6 +23,6 @@ public class Card {
         Stream.of(Suit.values())
                 .flatMap(suit -> Stream.of(Value.values())
                         .map(value -> new Card(suit, value)))
-                .collect(Collectors.toList());
+                .forEach(System.out::println);
     }
 }
